@@ -1,0 +1,64 @@
+* 20210309
+
+** lombok
+
+online_common目录下的pom.xml中的lombok库需要手动安装。
+
+将配置文件改为
+
+#+BEGIN_SRC xml
+
+<dependency>
+<groupId>org.projectlombok</groupId>
+<artifactId>lombok</artifactId>
+<version>1.18.12</version>
+<scope>provided</scope>
+</dependency>
+
+#+END_SRC
+
+** skip为true
+
+#+BEGIN_SRC xml
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+		<configuration>
+		  <skip>true</skip>
+		</configuration>
+		<executions>
+		  <execution>
+		    <goals>
+		      <goal>repackage</goal>
+		    </goals>
+		  </execution>
+		</executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
+#+END_SRC
+
+特别注意skip一定要设成true。
+
+因为不需要mainClass。
+
+** aliyun-sdk-vod-upload:jar的问题
+
+[[images/aliyun-sdk-vod-upload-jar.png]]
+
+
+
+
